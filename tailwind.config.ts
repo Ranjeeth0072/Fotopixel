@@ -55,10 +55,11 @@ export default {
           DEFAULT: "hsl(var(--dark))",
           foreground: "hsl(var(--dark-foreground))",
         },
-        orange: {
-          DEFAULT: "hsl(var(--orange))",
-          hover: "hsl(var(--orange-hover))",
+        navy: {
+          DEFAULT: "hsl(var(--navy))",
+          light: "hsl(var(--navy-light))",
         },
+        "accent-blue": "hsl(var(--accent-blue))",
         "light-gray": "hsl(var(--light-gray))",
         "medium-gray": "hsl(var(--medium-gray))",
         "star-gold": "hsl(var(--star-gold))",
@@ -91,11 +92,21 @@ export default {
           from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "slide-left": {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0)" },
+        },
+        "slide-right": {
+          from: { transform: "translateX(-100%)" },
+          to: { transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "counter-up": "counter-up 0.8s ease-out forwards",
+        "slide-left": "slide-left 0.5s ease-out",
+        "slide-right": "slide-right 0.5s ease-out",
       },
     },
   },

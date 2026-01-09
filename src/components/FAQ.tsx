@@ -4,80 +4,62 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Button } from '@/components/ui/button';
 
 const faqs = [
   {
-    question: 'Can I really get my photos in 24 hours?',
-    answer: 'Yes, our global team works around the clock to ensure your photos are delivered within 24 hours. We prioritize timely delivery without compromising on quality.',
+    question: 'What is the turnaround time for photo editing?',
+    answer: 'Our standard turnaround time is 24 hours for most photo enhancement services. For more complex services like virtual staging or 3D floor plans, it may take 36-72 hours. Rush delivery options are also available.',
   },
   {
-    question: 'What if I want to change something in my photos after delivery?',
-    answer: 'We are committed to your satisfaction as we value long-term partnerships. You can request any changes you need, and we will make them until you are fully satisfied with the result.',
+    question: 'What file formats do you accept?',
+    answer: 'We accept all major image formats including RAW, JPEG, PNG, and TIFF. For best results, we recommend uploading RAW files as they provide the highest quality and most flexibility for editing.',
   },
   {
-    question: 'How many photos do I need to order for HDR or Flambient editing?',
-    answer: "You only need to order the final amount of edited photos you require. There's no need to order each individual bracket.",
+    question: 'How does the free trial work?',
+    answer: 'Our free trial allows you to upload 3 photos and receive professionally edited images at no cost. This helps you experience our quality before committing to a paid service. No credit card required.',
   },
   {
-    question: 'What type of photo files do you prefer for optimal results?',
-    answer: 'For the best editing potential, we prefer RAW files due to their high flexibility in editing. However, we can also work with JPG files if that\'s what you have available.',
+    question: 'Can I request revisions?',
+    answer: 'Yes, we offer unlimited revisions on all our services. If you are not satisfied with the initial edit, simply let us know what changes you would like, and we will make adjustments at no extra cost.',
   },
   {
-    question: 'How many brackets are preferred for HDR photos?',
-    answer: 'For HDR editing, we recommend uploading between 3 to 7 brackets. It\'s crucial that the darkest bracket does not have overexposed areas in the windows, to facilitate effective window pulls.',
+    question: 'What payment methods do you accept?',
+    answer: 'We accept all major credit cards, PayPal, and bank transfers. For enterprise clients, we also offer invoicing options with NET 30 payment terms.',
   },
   {
-    question: 'Will I have a dedicated editor for all my projects?',
-    answer: 'Yes, each client is assigned a dedicated editor. We strongly believe in the importance of consistency and quality in photo editing. By providing you with a dedicated editor, we ensure that all your photos are uniform and meet your specific style and preferences.',
+    question: 'Do you offer bulk pricing?',
+    answer: 'Yes, we offer competitive bulk pricing for high-volume clients. Contact our sales team for custom quotes tailored to your specific needs and volume requirements.',
   },
 ];
 
 const FAQ = () => {
   return (
-    <section className="bg-secondary section-padding">
+    <section id="faq" className="bg-background section-padding">
       <div className="section-container">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-8">
-              Frequently asked questions
-            </h2>
-            <Accordion type="single" collapsible className="w-full space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="bg-card border border-border rounded-lg px-6"
-                >
-                  <AccordionTrigger className="text-left font-heading font-semibold text-foreground hover:text-primary">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-            <div className="mt-8">
-              <Button variant="outline" size="lg">
-                No answer found? Contact us
-              </Button>
-            </div>
-          </div>
+        <div className="text-center mb-12 md:mb-16">
+          <p className="text-primary font-medium mb-2 uppercase tracking-wide text-sm">Got Questions?</p>
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-foreground">
+            Frequently Asked Questions
+          </h2>
+        </div>
 
-          <div className="hidden lg:block">
-            <div className="bg-card border border-border rounded-xl p-8 sticky top-24">
-              <h3 className="font-heading font-bold text-xl text-foreground mb-4">
-                Still have questions?
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                Our team is here to help. Contact us for personalized assistance with your real estate photo editing needs.
-              </p>
-              <Button variant="cta" size="lg" className="w-full">
-                GET IN TOUCH
-              </Button>
-            </div>
-          </div>
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="bg-card border border-border rounded-lg px-4 md:px-6"
+              >
+                <AccordionTrigger className="text-left font-heading font-semibold text-foreground hover:text-primary text-sm md:text-base py-4">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pb-4 text-sm">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>
