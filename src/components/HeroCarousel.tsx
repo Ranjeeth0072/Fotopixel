@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import heroLivingRoom from '@/assets/hero-living-room.jpg';
 import heroBathroom from '@/assets/hero-bathroom.jpg';
 import heroHallway from '@/assets/hero-hallway.jpg';
@@ -60,7 +61,7 @@ const HeroCarousel = () => {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.image})` }}
           >
-            <div className="absolute inset-0 bg-dark/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/60 to-dark/40" />
           </div>
 
           {/* Content */}
@@ -73,47 +74,54 @@ const HeroCarousel = () => {
                 {slide.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-                <Button variant="cta" size="xl" className="text-sm sm:text-base">
-                  GET FREE TRIAL
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="xl" 
-                  className="border-dark-foreground text-dark-foreground hover:bg-dark-foreground hover:text-dark text-sm sm:text-base"
-                >
-                  VIEW PORTFOLIO
-                </Button>
+                <Link to="/try-free">
+                  <Button variant="cta" size="xl" className="text-sm sm:text-base w-full sm:w-auto">
+                    GET FREE TRIAL
+                  </Button>
+                </Link>
+                <Link to="/portfolio">
+                  <Button 
+                    variant="outline" 
+                    size="xl" 
+                    className="border-2 border-dark-foreground text-dark-foreground bg-transparent hover:bg-dark-foreground hover:text-dark text-sm sm:text-base w-full sm:w-auto"
+                  >
+                    VIEW PORTFOLIO
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       ))}
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - More Visible */}
       <button
         onClick={goToPrev}
-        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-dark/50 hover:bg-primary rounded-full flex items-center justify-center text-dark-foreground transition-colors"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-primary hover:bg-primary/80 rounded-full flex items-center justify-center text-primary-foreground shadow-lg transition-all hover:scale-110"
+        aria-label="Previous slide"
       >
-        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+        <ChevronLeft className="w-6 h-6 md:w-7 md:h-7" />
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-dark/50 hover:bg-primary rounded-full flex items-center justify-center text-dark-foreground transition-colors"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-primary hover:bg-primary/80 rounded-full flex items-center justify-center text-primary-foreground shadow-lg transition-all hover:scale-110"
+        aria-label="Next slide"
       >
-        <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+        <ChevronRight className="w-6 h-6 md:w-7 md:h-7" />
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3">
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all ${
+            className={`h-3 rounded-full transition-all ${
               index === currentSlide
-                ? 'bg-primary w-6 md:w-8'
-                : 'bg-dark-foreground/50 hover:bg-dark-foreground'
+                ? 'bg-primary w-10'
+                : 'bg-dark-foreground/50 hover:bg-dark-foreground w-3'
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const FreeTrial = () => {
   return (
@@ -12,14 +13,16 @@ const FreeTrial = () => {
           Experience our professional photo editing quality with no commitment. 
           Upload 3 photos and receive professionally edited images within 24 hours.
         </p>
-        <Button
-          variant="outline"
-          size="xl"
-          className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 border-0 group text-sm md:text-base"
-        >
-          START FREE TRIAL
-          <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-        </Button>
+        <Link to="/try-free">
+          <Button
+            variant="outline"
+            size="xl"
+            className="bg-primary-foreground text-primary hover:bg-primary-foreground/80 hover:text-primary border-0 group text-sm md:text-base"
+          >
+            START FREE TRIAL
+            <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+          </Button>
+        </Link>
       </div>
     </section>
   );
