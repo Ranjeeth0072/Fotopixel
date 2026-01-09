@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import PortfolioModal from './PortfolioModal';
 import portfolio1 from '@/assets/portfolio-1.jpg';
 import portfolio2 from '@/assets/portfolio-2.jpg';
@@ -59,9 +60,11 @@ const Portfolio = () => {
         </div>
 
         <div className="text-center mt-10 md:mt-12">
-          <Button variant="cta" size="lg">
-            EXPLORE FULL PORTFOLIO
-          </Button>
+          <Link to="/portfolio">
+            <Button variant="cta" size="lg">
+              EXPLORE FULL PORTFOLIO
+            </Button>
+          </Link>
         </div>
       </div>
 

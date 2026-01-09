@@ -1,7 +1,8 @@
 import { ImageIcon, Home, Compass, Wand2, Video, Grid3X3, Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import BeforeAfterSlider from './BeforeAfterSlider';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import portfolio1 from '@/assets/portfolio-1.jpg';
 import portfolio2 from '@/assets/portfolio-2.jpg';
 
@@ -57,62 +58,60 @@ const services = [
   },
 ];
 
-const Services = () => {
+const ServicesPage = () => {
   return (
-    <section id="services" className="bg-background section-padding">
-      <div className="section-container">
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <section className="section-container section-padding">
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-primary font-medium mb-2 uppercase tracking-wide text-sm">THIS IS WHAT WE DO</p>
-          <h2 className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-foreground">
+          <p className="text-primary font-medium mb-2 uppercase tracking-wide text-sm">WHAT WE OFFER</p>
+          <h1 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
             Our Services
-          </h2>
+          </h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Professional real estate photo editing services that help your listings stand out and sell faster.
+          </p>
         </div>
 
         {/* Before/After Showcase */}
-        <div className="mb-12 md:mb-16">
+        <div className="mb-16">
           <BeforeAfterSlider
             beforeImage={portfolio1}
             afterImage={portfolio2}
-            className="h-[250px] sm:h-[300px] md:h-[400px] max-w-4xl mx-auto"
+            className="h-[300px] md:h-[450px] max-w-5xl mx-auto"
           />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => (
             <Link
               key={index}
               to={`/services/${service.slug}`}
-              className="group bg-card border border-border rounded-xl p-5 md:p-6 hover-lift hover-glow transition-all cursor-pointer"
+              className="group bg-card border border-border rounded-xl p-6 md:p-8 hover-lift hover-glow transition-all cursor-pointer"
             >
-              <div className="w-12 h-12 md:w-14 md:h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
-                <service.icon className="w-6 h-6 md:w-7 md:h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+              <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary transition-colors">
+                <service.icon className="w-7 h-7 md:w-8 md:h-8 text-primary group-hover:text-primary-foreground transition-colors" />
               </div>
-              <h3 className="font-heading font-bold text-lg md:text-xl text-foreground mb-1">
+              <h3 className="font-heading font-bold text-xl md:text-2xl text-foreground mb-2">
                 {service.title}
               </h3>
-              <p className="text-sm text-primary font-medium mb-3">{service.subtitle}</p>
-              <p className="text-muted-foreground text-sm line-clamp-3">
+              <p className="text-sm text-primary font-medium mb-4">{service.subtitle}</p>
+              <p className="text-muted-foreground">
                 {service.description}
               </p>
+              <div className="mt-6 flex items-center text-primary font-medium group-hover:gap-2 transition-all">
+                Learn More 
+                <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
             </Link>
           ))}
         </div>
+      </section>
 
-        <div className="text-center mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/services">
-            <Button variant="cta" size="lg">
-              VIEW ALL SERVICES
-            </Button>
-          </Link>
-          <Link to="/portfolio">
-            <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              EXPLORE PORTFOLIO
-            </Button>
-          </Link>
-        </div>
-      </div>
-    </section>
+      <Footer />
+    </div>
   );
 };
 
-export default Services;
+export default ServicesPage;
