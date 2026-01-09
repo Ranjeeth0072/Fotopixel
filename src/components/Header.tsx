@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Menu, X, ShoppingCart, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo.jpg';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,12 +22,10 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center">
-              <div className="w-5 h-5 bg-primary rounded-sm" />
-            </div>
-            <div className="text-dark-foreground">
-              <span className="font-heading font-bold text-lg tracking-wide">REAL ESTATE</span>
-              <span className="block text-xs tracking-[0.3em] text-primary">PHOTO EDITING</span>
+            <img src={logo} alt="Fotopixel Image Solution" className="h-12 w-12 object-contain rounded-md" />
+            <div className="text-dark-foreground hidden sm:block">
+              <span className="font-heading font-bold text-lg tracking-wide">fotopixel</span>
+              <span className="block text-xs tracking-[0.2em] text-primary uppercase">Image Solution</span>
             </div>
           </a>
 
@@ -53,11 +52,11 @@ const Header = () => {
                 </div>
               )}
             </div>
-            <a href="#services" className="text-dark-foreground hover:text-primary transition-colors font-medium">
-              Shop
-            </a>
             <a href="#portfolio" className="text-dark-foreground hover:text-primary transition-colors font-medium">
               Portfolio
+            </a>
+            <a href="#how-it-works" className="text-dark-foreground hover:text-primary transition-colors font-medium">
+              How It Works
             </a>
             <a href="#contact" className="text-dark-foreground hover:text-primary transition-colors font-medium">
               Contact
@@ -66,11 +65,8 @@ const Header = () => {
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4">
-            <button className="text-dark-foreground hover:text-primary transition-colors">
-              <ShoppingCart className="w-5 h-5" />
-            </button>
             <Button variant="cta" size="lg">
-              ORDER ONLINE
+              GET FREE TRIAL
             </Button>
           </div>
 
@@ -93,17 +89,17 @@ const Header = () => {
               <a href="#services" className="text-dark-foreground hover:text-primary transition-colors font-medium">
                 Services
               </a>
-              <a href="#services" className="text-dark-foreground hover:text-primary transition-colors font-medium">
-                Shop
-              </a>
               <a href="#portfolio" className="text-dark-foreground hover:text-primary transition-colors font-medium">
                 Portfolio
+              </a>
+              <a href="#how-it-works" className="text-dark-foreground hover:text-primary transition-colors font-medium">
+                How It Works
               </a>
               <a href="#contact" className="text-dark-foreground hover:text-primary transition-colors font-medium">
                 Contact
               </a>
               <Button variant="cta" className="w-full mt-2">
-                ORDER ONLINE
+                GET FREE TRIAL
               </Button>
             </nav>
           </div>
