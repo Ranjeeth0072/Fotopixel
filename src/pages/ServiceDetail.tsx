@@ -25,7 +25,7 @@ const servicesData: Record<string, {
     subtitle: 'HDR – Single Exposure – Flambient',
     description: 'Transform your real estate photographs into visual masterpieces with our Photo Enhancement service. We specialize in various techniques including HDR, single exposure, and flambient editing to bring out the best in every property image.',
     features: ['HDR Processing', 'Color Correction', 'Exposure Balancing', 'Window Masking', 'Sky Replacement', 'Perspective Correction'],
-    howWeWork: ['Upload your raw images', 'Our experts analyze each photo', 'Apply professional enhancement techniques', 'Quality check by senior editors', 'Deliver within 24 hours'],
+    howWeWork: ['Upload your raw images', 'Our experts analyze each photo', 'Apply professional enhancement techniques', 'Quality check by senior editors', 'Deliver within 12 hours'],
   },
   'virtual-staging': {
     icon: Home,

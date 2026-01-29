@@ -8,6 +8,7 @@ import ThemeToggle from './ThemeToggle';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   const services = [
     { name: 'Photo Enhancement', slug: 'photo-enhancement' },
@@ -42,31 +43,34 @@ const Header = () => {
               onMouseEnter={() => setIsServicesOpen(true)} 
               onMouseLeave={() => setIsServicesOpen(false)}
             >
-              <button className="text-dark-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
-                Services <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+              <button 
+                className="text-dark-foreground hover:text-primary transition-colors font-medium flex items-center gap-1"
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+              >
+                Services <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
               </button>
-              {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-2xl py-3 animate-fade-in border border-border overflow-hidden">
-                  {services.map((service) => (
-                    <Link
-                      key={service.slug}
-                      to={`/services/${service.slug}`}
-                      className="flex items-center gap-3 px-4 py-3 text-foreground hover:bg-primary hover:text-primary-foreground transition-all group"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-primary group-hover:bg-primary-foreground transition-colors" />
-                      {service.name}
-                    </Link>
-                  ))}
-                  <div className="border-t border-border mt-2 pt-2">
-                    <Link
-                      to="/services"
-                      className="flex items-center justify-center gap-2 px-4 py-2 text-primary font-medium hover:bg-primary/10 transition-colors"
-                    >
-                      View All Services
-                    </Link>
-                  </div>
+              <div className={`absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-2xl py-3 border border-border overflow-hidden transition-all duration-300 ${isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+                {services.map((service) => (
+                  <Link
+                    key={service.slug}
+                    to={`/services/${service.slug}`}
+                    className="flex items-center gap-3 px-4 py-3 text-foreground hover:bg-primary hover:text-primary-foreground transition-all group"
+                    onClick={() => setIsServicesOpen(false)}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-primary group-hover:bg-primary-foreground transition-colors" />
+                    {service.name}
+                  </Link>
+                ))}
+                <div className="border-t border-border mt-2 pt-2">
+                  <Link
+                    to="/services"
+                    className="flex items-center justify-center gap-2 px-4 py-2 text-primary font-medium hover:bg-primary/10 transition-colors"
+                    onClick={() => setIsServicesOpen(false)}
+                  >
+                    View All Services
+                  </Link>
                 </div>
-              )}
+              </div>
             </div>
             <Link to="/portfolio" className="text-dark-foreground hover:text-primary transition-colors font-medium">
               Portfolio
@@ -103,25 +107,55 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-dark-foreground/10 animate-fade-in">
-            <nav className="flex flex-col gap-4">
-              <Link to="/" className="text-dark-foreground hover:text-primary transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+          <div className="lg:hidden py-4 border-t border-dark-foreground/10 animate-fade-in max-h-[70vh] overflow-y-auto">
+            <nav className="flex flex-col gap-2">
+              <Link to="/" className="text-dark-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Home
               </Link>
-              <Link to="/services" className="text-dark-foreground hover:text-primary transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
-                Services
-              </Link>
-              <Link to="/portfolio" className="text-dark-foreground hover:text-primary transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              
+              {/* Mobile Services Dropdown */}
+              <div>
+                <button 
+                  className="w-full text-left text-dark-foreground hover:text-primary transition-colors font-medium py-2 flex items-center justify-between"
+                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                >
+                  Services
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${isMobileServicesOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <div className="pl-4 py-2 space-y-2 border-l-2 border-primary/30 ml-2">
+                    {services.map((service) => (
+                      <Link
+                        key={service.slug}
+                        to={`/services/${service.slug}`}
+                        className="block text-dark-foreground/80 hover:text-primary transition-colors py-1 text-sm"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {service.name}
+                      </Link>
+                    ))}
+                    <Link
+                      to="/services"
+                      className="block text-primary font-medium py-1 text-sm"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      View All Services
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              
+              <Link to="/portfolio" className="text-dark-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Portfolio
               </Link>
-              <a href="/#how-it-works" className="text-dark-foreground hover:text-primary transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              <a href="/#how-it-works" className="text-dark-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 How It Works
               </a>
-              <Link to="/contact" className="text-dark-foreground hover:text-primary transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+              <Link to="/contact" className="text-dark-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Contact
               </Link>
               <Link to="/try-free" onClick={() => setIsMenuOpen(false)}>
-                <Button variant="cta" className="w-full mt-2">
+                <Button variant="cta" className="w-full mt-3">
                   GET FREE TRIAL
                 </Button>
               </Link>
