@@ -11,7 +11,7 @@ const FreeTrial = () => {
         </h2>
         <p className="text-primary-foreground/90 max-w-2xl mx-auto mb-6 md:mb-8 text-sm md:text-lg px-4">
           Experience our professional photo editing quality with no commitment. 
-          Upload 3 photos and receive professionally edited images within 24 hours.
+          Upload 3 photos and receive professionally edited images within 12 hours.
         </p>
         <Link to="/try-free">
           <Button

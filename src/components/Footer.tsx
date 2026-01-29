@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/logo.jpg';
 
@@ -46,6 +46,26 @@ const Footer = () => {
               <div className="flex items-start gap-3 text-dark-foreground/80 text-sm">
                 <MapPin className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
                 <span>Chennai, Tamil Nadu 638008, India</span>
+              </div>
+              <div className="flex items-center gap-4 mt-4">
+                <a 
+                  href="https://www.facebook.com/share/1CAvNiwyYh/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-dark-foreground/80 hover:text-primary transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5 md:w-6 md:h-6" />
+                </a>
+                <a 
+                  href="https://www.instagram.com/fotopixelimgsolution" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-dark-foreground/80 hover:text-primary transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5 md:w-6 md:h-6" />
+                </a>
               </div>
             </div>
           </div>

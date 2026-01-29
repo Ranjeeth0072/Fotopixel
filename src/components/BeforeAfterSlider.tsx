@@ -11,8 +11,8 @@ interface BeforeAfterSliderProps {
 const BeforeAfterSlider = ({
   beforeImage,
   afterImage,
-  beforeLabel = 'BEFORE',
-  afterLabel = 'AFTER',
+  beforeLabel = 'Before',
+  afterLabel = 'After',
   className = '',
 }: BeforeAfterSliderProps) => {
   const [sliderPosition, setSliderPosition] = useState(50);

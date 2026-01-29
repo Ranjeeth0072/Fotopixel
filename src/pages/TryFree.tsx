@@ -139,7 +139,7 @@ const TryFree = () => {
 
               <div>
                 <Label className="text-foreground">Upload Photos (Max 3)</Label>
-                <div className="mt-2 border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer">
+                <div className="mt-2 border-2 border-dashed border-border rounded-lg p-6 sm:p-8 text-center hover:border-primary transition-colors cursor-pointer">
                   <input
                     type="file"
                     accept="image/*"
@@ -149,9 +149,9 @@ const TryFree = () => {
                     id="file-upload"
                   />
                   <label htmlFor="file-upload" className="cursor-pointer">
-                    <Upload className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-foreground font-medium mb-1">Click to upload photos</p>
-                    <p className="text-muted-foreground text-sm">PNG, JPG, JPEG up to 10MB each</p>
+                    <Upload className="w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground mx-auto mb-3 sm:mb-4" />
+                    <p className="text-foreground font-medium mb-1 text-sm sm:text-base">Click to upload photos</p>
+                    <p className="text-muted-foreground text-xs sm:text-sm">PNG, JPG, JPEG up to 10MB each (Max 3 photos)</p>
                   </label>
                 </div>
                 {files.length > 0 && (

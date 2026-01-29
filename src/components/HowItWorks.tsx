@@ -16,7 +16,7 @@ const steps = [
   {
     icon: Download,
     title: 'Download',
-    description: 'Receive your polished photos within 24 hours, ready to impress.',
+    description: 'Receive your polished photos within 12 hours, ready to impress.',
     step: '03',
   },
   {
