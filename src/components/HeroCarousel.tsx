@@ -2,23 +2,37 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import heroLivingRoom from '@/assets/hero-living-room.jpg';
-import heroBathroom from '@/assets/hero-bathroom.jpg';
-import heroHallway from '@/assets/hero-hallway.jpg';
+const portfolio17 = '/assets/portfolio/17.jpg';
+const portfolio18 = '/assets/portfolio/18.jpg';
+const portfolio19 = '/assets/portfolio/19.jpg';
+const portfolio56 = '/assets/portfolio/56.jpg';
+const portfolio53 = '/assets/portfolio/53.jpg';
+
+const vs1After = portfolio53;
 
 const slides = [
   {
-    image: heroLivingRoom,
+    image: portfolio19,
+    title: 'Transform Your Property Photos',
+    subtitle: 'Professional real estate photo editing that sells homes faster',
+  },
+  {
+    image: portfolio18,
+    title: 'HDR & Photo Enhancement',
+    subtitle: 'Stunning visuals that capture buyer attention',
+  },
+  {
+    image: portfolio17,
     title: 'Real Estate Property Website',
     subtitle: 'Custom designed websites that showcase your properties beautifully',
   },
   {
-    image: heroBathroom,
+    image: vs1After,
     title: 'Virtual Staging Excellence',
     subtitle: 'Turn empty spaces into beautifully furnished rooms',
   },
   {
-    image: heroHallway,
+    image: portfolio56,
     title: 'Video Editing',
     subtitle: 'Cinematic property videos that captivate buyers',
   },
@@ -26,6 +40,8 @@ const slides = [
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,8 +62,60 @@ const HeroCarousel = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
+  // Touch handlers for swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      goToNext();
+    }
+    if (isRightSwipe) {
+      goToPrev();
+    }
+
+    // Reset values
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  // Click handler for mobile only
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Only handle clicks on mobile (screen width < 768px)
+    if (window.innerWidth >= 768) return;
+    
+    const target = e.currentTarget;
+    const rect = target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const width = rect.width;
+
+    // If clicked on left half, go previous; right half, go next
+    if (x < width / 2) {
+      goToPrev();
+    } else {
+      goToNext();
+    }
+  };
+
   return (
-    <section className="relative h-[70vh] md:h-[85vh] overflow-hidden touch-pan-y">
+    <section 
+      className="relative h-[70vh] md:h-[85vh] overflow-hidden cursor-pointer md:cursor-default"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onClick={handleClick}
+    >
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -65,8 +133,8 @@ const HeroCarousel = () => {
           </div>
 
           {/* Content */}
-          <div className="relative h-full flex items-center justify-center">
-            <div className="text-center px-6 sm:px-8 max-w-4xl mx-auto">
+          <div className="relative h-full flex items-center justify-center pointer-events-none">
+            <div className="text-center px-6 sm:px-8 max-w-4xl mx-auto pointer-events-auto">
               <h1 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-dark-foreground leading-tight mb-3 md:mb-6 drop-shadow-lg">
                 {slide.title}
               </h1>
@@ -94,17 +162,17 @@ const HeroCarousel = () => {
         </div>
       ))}
 
-      {/* Navigation Arrows - Enhanced visibility */}
+      {/* Navigation Arrows - Hidden on mobile, visible on md+ */}
       <button
         onClick={goToPrev}
-        className="absolute left-3 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-primary hover:bg-primary/90 rounded-full flex items-center justify-center text-primary-foreground shadow-xl transition-all hover:scale-110 z-20"
+        className="hidden md:flex absolute left-3 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-primary hover:bg-primary/90 rounded-full items-center justify-center text-primary-foreground shadow-xl transition-all hover:scale-110 z-20"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-3 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-primary hover:bg-primary/90 rounded-full flex items-center justify-center text-primary-foreground shadow-xl transition-all hover:scale-110 z-20"
+        className="hidden md:flex absolute right-3 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-primary hover:bg-primary/90 rounded-full items-center justify-center text-primary-foreground shadow-xl transition-all hover:scale-110 z-20"
         aria-label="Next slide"
       >
         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />

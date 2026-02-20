@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import logo from '@/assets/logo.jpg';
+const logo = '/logo.png';
 import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
@@ -13,8 +13,8 @@ const Header = () => {
   const services = [
     { name: 'Photo Enhancement', slug: 'photo-enhancement' },
     { name: 'Virtual Staging', slug: 'virtual-staging' },
-    { name: '360° Panorama', slug: '360-panorama' },
-    { name: 'Photo Manipulation', slug: 'photo-manipulation' },
+    // { name: '360° Panorama', slug: '360-panorama' },
+    // { name: 'Photo Manipulation', slug: 'photo-manipulation' },
     { name: 'Video Editing', slug: 'video-editing' },
     { name: 'Floor Plan', slug: 'floor-plan' },
     { name: 'Real Estate Website', slug: 'real-estate-website' },
@@ -26,7 +26,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Fotopixel Image Solution" className="h-12 w-12 object-contain rounded-md" />
+            <img src={logo} alt="Fotopixel Image Solution" className="h-14 w-auto object-contain" />
             <div className="text-dark-foreground hidden sm:block">
               <span className="font-heading font-bold text-lg tracking-wide">fotopixel</span>
               <span className="block text-xs tracking-[0.2em] text-primary uppercase">Image Solution</span>
@@ -34,7 +34,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-dark-foreground hover:text-primary transition-colors font-medium">
               Home
             </Link>
@@ -75,16 +75,13 @@ const Header = () => {
             <Link to="/portfolio" className="text-dark-foreground hover:text-primary transition-colors font-medium">
               Portfolio
             </Link>
-            <a href="/#how-it-works" className="text-dark-foreground hover:text-primary transition-colors font-medium">
-              How It Works
-            </a>
             <Link to="/contact" className="text-dark-foreground hover:text-primary transition-colors font-medium">
               Contact
             </Link>
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
             <Link to="/try-free">
               <Button variant="cta" size="lg">
@@ -94,7 +91,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 lg:hidden">
+          <div className="flex items-center gap-4 md:hidden">
             <ThemeToggle />
             <button
               className="text-dark-foreground"
@@ -107,7 +104,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-dark-foreground/10 animate-fade-in max-h-[70vh] overflow-y-auto">
+          <div className="md:hidden py-4 border-t border-dark-foreground/10 animate-fade-in max-h-[70vh] overflow-y-auto">
             <nav className="flex flex-col gap-2">
               <Link to="/" className="text-dark-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Home
@@ -148,9 +145,6 @@ const Header = () => {
               <Link to="/portfolio" className="text-dark-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Portfolio
               </Link>
-              <a href="/#how-it-works" className="text-dark-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
-                How It Works
-              </a>
               <Link to="/contact" className="text-dark-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Contact
               </Link>

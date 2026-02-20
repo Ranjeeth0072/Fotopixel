@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Upload, Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { emailjsConfig, isEmailJSConfigured } from '@/lib/emailjs-config';
+import { Send, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,20 +15,13 @@ const TryFree = () => {
     businessName: '',
     email: '',
   });
-  const [files, setFiles] = useState<File[]>([]);
+  const [link, setLink] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const selectedFiles = Array.from(e.target.files).slice(0, 3);
-      setFiles(selectedFiles);
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email) {
       toast({
         title: "Error",
@@ -36,26 +31,76 @@ const TryFree = () => {
       return;
     }
 
-    if (files.length === 0) {
+    if (!link) {
       toast({
         title: "Error",
-        description: "Please upload at least one photo",
+        description: "Please provide a link to your photos",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check if EmailJS is configured
+    if (!isEmailJSConfigured()) {
+      console.error('EmailJS is not configured. Please add your credentials.');
+      toast({
+        title: "Configuration Error",
+        description: "Email service is not configured. Please contact the administrator.",
         variant: "destructive",
       });
       return;
     }
 
     setIsSubmitting(true);
-    
-    // Simulate submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Success!",
-      description: "Your free trial request has been submitted. We'll contact you within 24 hours.",
-    });
+
+    try {
+      // Initialize EmailJS with your public key
+      emailjs.init(emailjsConfig.publicKey);
+
+      // Prepare template parameters
+      const templateParams = {
+        name: formData.name,
+        businessName: formData.businessName || 'Not provided',
+        email: formData.email,
+        message: link,
+        to_name: 'Fotopixel Team',
+        reply_to: formData.email,
+      };
+
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        templateParams
+      );
+
+      console.log('Email sent successfully:', response);
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+
+      // Reset form
+      setFormData({
+        name: '',
+        businessName: '',
+        email: '',
+      });
+      setLink('');
+
+      toast({
+        title: "Success!",
+        description: "Your free trial request has been submitted. We'll contact you within 12 hours.",
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setIsSubmitting(false);
+
+      toast({
+        title: "Error",
+        description: "Failed to send request. Please try again or contact us directly via email.",
+        variant: "destructive",
+      });
+    }
   };
 
   if (isSubmitted) {
@@ -69,7 +114,7 @@ const TryFree = () => {
               Thank You!
             </h1>
             <p className="text-muted-foreground mb-8">
-              Your free trial request has been submitted successfully. Our team will review your photos and get back to you within 24 hours.
+              Your free trial request has been submitted successfully. Our team will review your photos and get back to you within 12 hours.
             </p>
             <Button variant="cta" onClick={() => window.location.href = '/'}>
               Back to Home
@@ -89,10 +134,10 @@ const TryFree = () => {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
             <h1 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-4">
-              Try 3 Photos For Free
+              Drop Your Link For Free
             </h1>
             <p className="text-muted-foreground">
-              Experience our professional photo editing quality with no commitment. Upload up to 3 photos and receive professionally edited images within 24 hours.
+              Experience our professional photo editing quality with no commitment. Share a link to your photos (Google Drive, Dropbox, WeTransfer, etc.) and receive professionally edited images within 12 hours.
             </p>
           </div>
 
@@ -138,30 +183,27 @@ const TryFree = () => {
               </div>
 
               <div>
-                <Label className="text-foreground">Upload Photos (Max 3)</Label>
-                <div className="mt-2 border-2 border-dashed border-border rounded-lg p-6 sm:p-8 text-center hover:border-primary transition-colors cursor-pointer">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={handleFileChange}
-                    className="hidden"
-                    id="file-upload"
+                <Label htmlFor="link" className="text-foreground">Drop Your Link Here *</Label>
+                <div className="mt-2">
+                  <Input
+                    id="link"
+                    type="url"
+                    placeholder="Paste your Google Drive, Dropbox, or WeTransfer link here..."
+                    value={link}
+                    onChange={(e) => setLink(e.target.value)}
+                    className="text-base"
+                    required
                   />
-                  <label htmlFor="file-upload" className="cursor-pointer">
-                    <Upload className="w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground mx-auto mb-3 sm:mb-4" />
-                    <p className="text-foreground font-medium mb-1 text-sm sm:text-base">Click to upload photos</p>
-                    <p className="text-muted-foreground text-xs sm:text-sm">PNG, JPG, JPEG up to 10MB each (Max 3 photos)</p>
-                  </label>
+                  <p className="text-muted-foreground text-xs sm:text-sm mt-2">
+                    Share a link to your photos from Google Drive, Dropbox, WeTransfer, or any file sharing service
+                  </p>
                 </div>
-                {files.length > 0 && (
-                  <div className="mt-4 space-y-2">
-                    {files.map((file, index) => (
-                      <div key={index} className="flex items-center gap-2 text-sm text-foreground bg-secondary/50 rounded-lg px-3 py-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                        {file.name}
-                      </div>
-                    ))}
+                {link && (
+                  <div className="mt-4">
+                    <div className="flex items-center gap-2 text-sm text-foreground bg-secondary/50 rounded-lg px-3 py-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      Link added successfully
+                    </div>
                   </div>
                 )}
               </div>

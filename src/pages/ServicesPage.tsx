@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
-import portfolio1 from '@/assets/portfolio-1.jpg';
-import portfolio2 from '@/assets/portfolio-2.jpg';
+const portfolio2 = '/assets/FLASH AMBIENT/DSC_9535.jpg';
+const portfolio1 = '/assets/FLASH AMBIENT/AFTER/DSC_9535.jpg';
 
 const services = [
   {
@@ -21,20 +21,20 @@ const services = [
     description: 'Maximize the attractiveness of your listings through our Virtual Staging service, where our skilled team uses advanced technology to beautifully furnish vacant spaces.',
     slug: 'virtual-staging',
   },
-  {
-    icon: Compass,
-    title: '360° Panorama',
-    subtitle: 'HDR – Single Exposure',
-    description: 'Experience a new dimension in property showcasing with our 360° Panorama Photo Stitching and Editing service for immersive virtual tours.',
-    slug: '360-panorama',
-  },
-  {
-    icon: Wand2,
-    title: 'Photo Manipulation',
-    subtitle: 'Object Removal – Day To Dusk – Add Fire',
-    description: 'Enhance your real estate images with our Photo Manipulation service, expertly adding warmth, removing unwanted objects, and transforming day scenes to twilight.',
-    slug: 'photo-manipulation',
-  },
+  // {
+  //   icon: Compass,
+  //   title: '360° Panorama',
+  //   subtitle: 'HDR – Single Exposure',
+  //   description: 'Experience a new dimension in property showcasing with our 360° Panorama Photo Stitching and Editing service for immersive virtual tours.',
+  //   slug: '360-panorama',
+  // },
+  // {
+  //   icon: Wand2,
+  //   title: 'Photo Manipulation',
+  //   subtitle: 'Object Removal – Day To Dusk – Add Fire',
+  //   description: 'Enhance your real estate images with our Photo Manipulation service, expertly adding warmth, removing unwanted objects, and transforming day scenes to twilight.',
+  //   slug: 'photo-manipulation',
+  // },
   {
     icon: Video,
     title: 'Video Editing',
@@ -79,7 +79,7 @@ const ServicesPage = () => {
           <BeforeAfterSlider
             beforeImage={portfolio1}
             afterImage={portfolio2}
-            className="h-[300px] md:h-[450px] max-w-5xl mx-auto"
+            className="w-full max-w-3xl mx-auto"
           />
         </div>
 

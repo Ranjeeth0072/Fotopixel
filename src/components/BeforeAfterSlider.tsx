@@ -11,8 +11,6 @@ interface BeforeAfterSliderProps {
 const BeforeAfterSlider = ({
   beforeImage,
   afterImage,
-  beforeLabel = 'Before',
-  afterLabel = 'After',
   className = '',
 }: BeforeAfterSliderProps) => {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -47,7 +45,7 @@ const BeforeAfterSlider = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-lg cursor-ew-resize select-none ${className}`}
+      className={`relative overflow-hidden rounded-lg cursor-ew-resize select-none aspect-video ${className}`}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
@@ -73,14 +71,6 @@ const BeforeAfterSlider = ({
           className="w-full h-full object-cover"
           draggable={false}
         />
-      </div>
-
-      {/* Labels */}
-      <div className="absolute bottom-4 left-4 bg-destructive text-destructive-foreground px-3 py-1 text-xs font-bold rounded">
-        {beforeLabel}
-      </div>
-      <div className="absolute bottom-4 right-4 bg-destructive text-destructive-foreground px-3 py-1 text-xs font-bold rounded">
-        {afterLabel}
       </div>
 
       {/* Slider Line */}
