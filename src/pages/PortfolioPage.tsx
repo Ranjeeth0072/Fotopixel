@@ -38,7 +38,6 @@ const vs4 = '/assets/virtual staging/After/4.jpeg';
 const vs5 = '/assets/virtual staging/After/5.jpeg';
 
 // Portfolio images
-const portfolio1 = '/assets/portfolio/1.jpg';
 const portfolio4 = '/assets/portfolio/4.jpg';
 const portfolio17 = '/assets/portfolio/17.jpg';
 const portfolio18 = '/assets/portfolio/18.jpg';
@@ -46,7 +45,6 @@ const portfolio19 = '/assets/portfolio/19.jpg';
 const portfolio20 = '/assets/portfolio/20.jpg';
 const portfolio21 = '/assets/portfolio/21.jpg';
 const portfolio22 = '/assets/portfolio/22.jpg';
-const portfolio23 = '/assets/portfolio/23.jpg';
 const portfolio26 = '/assets/portfolio/26.jpg';
 const portfolio30 = '/assets/portfolio/30.jpg';
 const portfolio51 = '/assets/portfolio/51.jpg';
@@ -101,7 +99,6 @@ const portfolioItems = [
   { image: vs5, category: 'Virtual Staging' },
 
   // Portfolio images
-  { image: portfolio1, category: 'Others' },
   { image: portfolio4, category: 'Others' },
   { image: portfolio17, category: 'Others' },
   { image: portfolio18, category: 'Others' },
@@ -109,7 +106,6 @@ const portfolioItems = [
   { image: portfolio20, category: 'Others' },
   { image: portfolio21, category: 'Others' },
   { image: portfolio22, category: 'Others' },
-  { image: portfolio23, category: 'Others' },
   { image: portfolio26, category: 'Others' },
   { image: portfolio30, category: 'Others' },
   { image: portfolio51, category: 'Others' },
