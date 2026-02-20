@@ -1,13 +1,13 @@
 import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import logo from '@/assets/logo.jpg';
+const logo = '/logo.png';
 
 const Footer = () => {
   const services = [
     { name: 'Photo Enhancement', slug: 'photo-enhancement' },
     { name: 'Virtual Staging', slug: 'virtual-staging' },
-    { name: '360° Panorama', slug: '360-panorama' },
-    { name: 'Photo Manipulation', slug: 'photo-manipulation' },
+    // { name: '360° Panorama', slug: '360-panorama' },
+    // { name: 'Photo Manipulation', slug: 'photo-manipulation' },
     { name: 'Video Editing', slug: 'video-editing' },
     { name: 'Floor Plan', slug: 'floor-plan' },
     { name: 'Real Estate Website', slug: 'real-estate-website' },
@@ -28,7 +28,7 @@ const Footer = () => {
           {/* Logo & Info */}
           <div>
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <img src={logo} alt="Fotopixel Image Solution" className="h-12 w-12 object-contain rounded-md" />
+              <img src={logo} alt="Fotopixel Image Solution" className="h-16 w-auto object-contain" />
               <div>
                 <span className="font-heading font-bold text-lg tracking-wide block">fotopixel</span>
                 <span className="text-xs tracking-[0.2em] text-primary uppercase">Image Solution</span>
@@ -102,7 +102,7 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-bold text-lg mb-4 md:mb-6">Get Started</h4>
             <p className="text-dark-foreground/80 mb-4 text-sm">
-              Ready to enhance your real estate photos? Start with 3 free photos today.
+              Ready to enhance your real estate photos? Drop your link today.
             </p>
             <Link
               to="/try-free"

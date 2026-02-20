@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
+import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import TryFree from "./pages/TryFree";
@@ -21,6 +23,8 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
+          <WhatsAppWidget />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/try-free" element={<TryFree />} />

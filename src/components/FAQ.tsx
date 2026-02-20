@@ -8,7 +8,7 @@ import {
 const faqs = [
   {
     question: 'What is the turnaround time for photo editing?',
-    answer: 'Our standard turnaround time is 24 hours for most photo enhancement services. For more complex services like virtual staging or 3D floor plans, it may take 36-72 hours. Rush delivery options are also available.',
+    answer: 'Our standard turnaround time is 12 hours for most photo enhancement services. For more complex services like virtual staging or 3D floor plans, it may take 36-72 hours. Rush delivery options are also available.',
   },
   {
     question: 'What file formats do you accept?',

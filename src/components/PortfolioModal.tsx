@@ -1,21 +1,19 @@
 import { X, ZoomIn, ZoomOut } from 'lucide-react';
 import { useState } from 'react';
-import BeforeAfterSlider from './BeforeAfterSlider';
 
 interface PortfolioModalProps {
   isOpen: boolean;
   onClose: () => void;
-  beforeImage: string;
-  afterImage: string;
+  image: string;
 }
 
-const PortfolioModal = ({ isOpen, onClose, beforeImage, afterImage }: PortfolioModalProps) => {
+const PortfolioModal = ({ isOpen, onClose, image }: PortfolioModalProps) => {
   const [zoom, setZoom] = useState(1);
 
   if (!isOpen) return null;
 
   const handleZoomIn = () => {
-    setZoom((prev) => Math.min(prev + 0.25, 2));
+    setZoom((prev) => Math.min(prev + 0.25, 3));
   };
 
   const handleZoomOut = () => {
@@ -50,19 +48,19 @@ const PortfolioModal = ({ isOpen, onClose, beforeImage, afterImage }: PortfolioM
 
       {/* Content */}
       <div
-        className="w-full max-w-5xl overflow-auto"
-        style={{ transform: `scale(${zoom})`, transformOrigin: 'center center' }}
+        className="w-full max-w-6xl mx-auto flex items-center justify-center"
+        style={{ transform: `scale(${zoom})`, transformOrigin: 'center center', transition: 'transform 0.3s ease' }}
       >
-        <BeforeAfterSlider
-          beforeImage={beforeImage}
-          afterImage={afterImage}
-          className="h-[50vh] md:h-[70vh] w-full"
+        <img
+          src={image}
+          alt="Portfolio"
+          className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
         />
       </div>
 
       {/* Instructions */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-dark-foreground/60 text-xs md:text-sm text-center">
-        Drag the slider to compare before and after
+        Use zoom buttons to enlarge • Click X to close
       </div>
     </div>
   );
