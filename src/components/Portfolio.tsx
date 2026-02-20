@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import PortfolioModal from './PortfolioModal';
 
-const portfolio1 = '/assets/portfolio/1.jpg';
+const portfolio1 = '/assets/portfolio/4.jpg';
 const portfolio17 = '/assets/portfolio/17.jpg';
 const portfolio18 = '/assets/portfolio/18.jpg';
 const portfolio20 = '/assets/portfolio/20.jpg';
